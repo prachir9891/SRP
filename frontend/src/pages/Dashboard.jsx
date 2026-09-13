@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api';
 import StudentTable from '../components/StudentTable';
 import './Dashboard.css';
 
@@ -11,7 +11,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/api/students');
+        const { data } = await api.get('/students');
         setStudentData(data);
       } catch (error) {
         console.error('Error fetching students:', error);
@@ -23,7 +23,7 @@ const Dashboard = () => {
   const handleDelete = async (id) => {
     if(window.confirm('Are you sure you want to delete this student?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/students/${id}`);
+        await api.delete(`/students/${id}`);
         setStudentData(studentData.filter(s => s.id !== id));
       } catch (error) {
         console.error('Error deleting student:', error);

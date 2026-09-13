@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api';
 import FormInput from '../components/FormInput';
 import './Registration.css';
 const Registration = () => {
@@ -18,7 +18,7 @@ const Registration = () => {
 
   useEffect(() => {
     if (id) {
-      axios.get(`http://localhost:5000/api/students/${id}`)
+      api.get(`/students/${id}`)
         .then(({ data }) => {
           setFormData({
             name: data.name || '',
@@ -43,9 +43,9 @@ const Registration = () => {
     e.preventDefault();
     try {
       if (id) {
-        await axios.put(`http://localhost:5000/api/students/${id}`, formData);
+        await api.put(`/students/${id}`, formData);
       } else {
-        await axios.post('http://localhost:5000/api/students', formData);
+        await api.post('/students', formData);
       }
       setTimeout(() => {
         navigate('/dashboard');

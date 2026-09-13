@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 import './Header.css';
 
 const Header = () => {
@@ -11,7 +11,7 @@ const Header = () => {
   const handleSearch = async (e) => {
     if (e.key === 'Enter') {
       try {
-        const { data: students } = await axios.get('http://localhost:5000/api/students');
+        const { data: students } = await api.get('/students');
         const student = students.find(s => s.name.toLowerCase().includes(searchTerm.toLowerCase()));
         if (student) {
           navigate(`/student/${student.id}`);

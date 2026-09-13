@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api';
 import StudentCard from '../components/StudentCard';
 import './StudentDetails.css';
 
@@ -13,7 +13,7 @@ const StudentDetails = () => {
   useEffect(() => {
     const fetchStudent = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5000/api/students/${id}`);
+        const { data } = await api.get(`/students/${id}`);
         setStudent(data);
       } catch (error) {
         console.error('Error fetching student details:', error);
