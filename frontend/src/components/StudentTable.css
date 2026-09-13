@@ -1,0 +1,116 @@
+.table-container {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  padding: 1px; /* for gradient border effect */
+}
+
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.student-table th {
+  background-color: rgba(24, 26, 32, 0.9);
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.student-table td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+  transition: background-color var(--transition-fast);
+}
+
+.student-table tr:last-child td {
+  border-bottom: none;
+}
+
+.student-table tbody tr {
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.student-table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+  transform: scale(1.002);
+}
+
+.table-user-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.table-avatar {
+  width: 40px;
+  height: 40px;
+  background-color: var(--bg-tertiary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-color);
+  font-weight: 600;
+  border: 1px solid var(--border-color);
+}
+
+.table-user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-user-name {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.table-user-email {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.gpa-badge {
+  background-color: var(--bg-tertiary);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-family: monospace;
+  font-size: 0.875rem;
+}
+
+.status-indicator {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.status-indicator[data-status="Active"] {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--success);
+}
+
+.status-indicator[data-status="Pending"] {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: var(--warning);
+}
+
+.status-indicator[data-status="Graduated"] {
+  background-color: var(--accent-glow);
+  color: var(--accent-color);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem !important;
+  color: var(--text-muted);
+}
