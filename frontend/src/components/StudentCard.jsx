@@ -8,7 +8,7 @@ const StudentCard = ({ student }) => {
       <div className="card-header">
         <div className="student-avatar-lg">
           {student.profilePic ? (
-            <img src={student.profilePic} alt={student.name} style={{width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover'}} />
+            <img src={student.profilePic} alt={student.name} style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
           ) : (
             student.name.charAt(0)
           )}
@@ -17,11 +17,11 @@ const StudentCard = ({ student }) => {
           {student.status}
         </div>
       </div>
-      
+
       <div className="card-body">
         <h3 className="student-name">{student.name}</h3>
         <p className="student-email">Father: {student.fatherName}</p>
-        
+
         <div className="student-stats">
           <div className="stat-box">
             <span className="stat-label">Standard</span>

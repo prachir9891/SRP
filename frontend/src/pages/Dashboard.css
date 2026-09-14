@@ -60,6 +60,36 @@
   align-items: center;
 }
 
+.section-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.dashboard-search-box {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.75rem;
+  gap: 0.5rem;
+  width: 300px;
+}
+
+.dashboard-search-box input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  width: 100%;
+  font-size: 0.875rem;
+}
+
+.dashboard-search-box .search-icon {
+  color: var(--text-muted);
+}
+
 .btn-primary {
   background-color: var(--accent-color);
   color: white;

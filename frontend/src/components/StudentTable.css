@@ -11,7 +11,7 @@
 }
 
 .student-table th {
-  background-color: rgba(24, 26, 32, 0.9);
+  background-color: var(--bg-secondary);
   color: var(--text-muted);
   font-weight: 500;
   font-size: 0.75rem;
@@ -38,7 +38,7 @@
 }
 
 .student-table tbody tr:hover {
-  background-color: rgba(255, 255, 255, 0.02);
+  background-color: rgba(0, 0, 0, 0.02);
   transform: scale(1.002);
 }
 

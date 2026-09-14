@@ -1,24 +1,27 @@
 import { NavLink } from 'react-router-dom';
+import { Users, UserPlus, GraduationCap, LayoutDashboard } from 'lucide-react';
 import './Sidebar.css';
 
 const Sidebar = () => {
   return (
     <aside className="sidebar">
       <div className="sidebar-brand">
-        <div className="brand-icon"></div>
+        <div className="brand-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <GraduationCap size={20} color="white" />
+        </div>
         <h2>Student Registration Portal</h2>
       </div>
       <nav className="sidebar-nav">
         <NavLink to="/dashboard" className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
-          <span className="icon">📊</span>
-          All Students
+          <LayoutDashboard className="icon" size={20} />
+          Dashboard
         </NavLink>
         <NavLink to="/register" className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}>
-          <span className="icon">📝</span>
+          <UserPlus className="icon" size={20} />
           Registration
         </NavLink>
       </nav>
-      
+
       <div className="sidebar-footer">
         <div className="user-info">
           <div className="user-avatar">A</div>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Upload } from 'lucide-react';
 import api from '../api';
 import FormInput from '../components/FormInput';
 import './Registration.css';
@@ -8,6 +9,7 @@ const Registration = () => {
   const { id } = useParams();
   const [formData, setFormData] = useState({
     name: '',
+    parentTitle: 'Mr.',
     fatherName: '',
     standard: '',
     age: '',
@@ -22,6 +24,7 @@ const Registration = () => {
         .then(({ data }) => {
           setFormData({
             name: data.name || '',
+            parentTitle: data.parentTitle || 'Mr.',
             fatherName: data.fatherName || '',
             standard: data.standard || '',
             age: data.age || '',
@@ -37,6 +40,17 @@ const Registration = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handlePhotoUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData(prev => ({ ...prev, profilePic: reader.result }));
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -65,38 +79,55 @@ const Registration = () => {
 
         <form onSubmit={handleSubmit} className="registration-form">
           <div className="form-grid">
-            <FormInput 
-              label="Student Name" 
-              name="name" 
-              value={formData.name} 
-              onChange={handleChange} 
+            <FormInput
+              label="Student Name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
               placeholder="e.g. Rahul Kumar"
-              required 
+              required
             />
-            <FormInput 
-              label="Father's Name" 
-              name="fatherName" 
-              value={formData.fatherName} 
-              onChange={handleChange} 
-              placeholder="e.g. Anil Kumar"
-              required 
-            />
-            <FormInput 
-              label="Standard (Class)" 
-              name="standard" 
-              value={formData.standard} 
-              onChange={handleChange} 
+            <div className="input-group">
+              <label>Parent's Name <span className="required">*</span></label>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <select 
+                  name="parentTitle" 
+                  value={formData.parentTitle} 
+                  onChange={handleChange} 
+                  className="form-input"
+                  style={{ width: '80px', flexShrink: 0 }}
+                >
+                  <option value="Mr.">Mr.</option>
+                  <option value="Mrs.">Mrs.</option>
+                </select>
+                <input 
+                  type="text"
+                  name="fatherName" 
+                  value={formData.fatherName} 
+                  onChange={handleChange} 
+                  placeholder="e.g. Anil Kumar"
+                  required 
+                  className="form-input"
+                  style={{ flex: 1 }}
+                />
+              </div>
+            </div>
+            <FormInput
+              label="Standard (Class)"
+              name="standard"
+              value={formData.standard}
+              onChange={handleChange}
               placeholder="e.g. 5th"
-              required 
+              required
             />
-            <FormInput 
-              label="Age" 
-              name="age" 
+            <FormInput
+              label="Age"
+              name="age"
               type="number"
-              value={formData.age} 
-              onChange={handleChange} 
+              value={formData.age}
+              onChange={handleChange}
               placeholder="e.g. 10"
-              required 
+              required
             />
             <div className="input-group">
               <label>Gender</label>
@@ -106,20 +137,35 @@ const Registration = () => {
                 <option value="Other">Other</option>
               </select>
             </div>
-            <FormInput 
-              label="Previous School Name" 
-              name="previousSchool" 
-              value={formData.previousSchool} 
-              onChange={handleChange} 
+            <FormInput
+              label="Previous School Name"
+              name="previousSchool"
+              value={formData.previousSchool}
+              onChange={handleChange}
               placeholder="e.g. DPS School"
             />
-            <FormInput 
-              label="Profile Picture URL (Optional)" 
-              name="profilePic" 
-              value={formData.profilePic} 
-              onChange={handleChange} 
-              placeholder="https://example.com/photo.jpg"
-            />
+            <div className="input-group full-width">
+              <label>Student Photo</label>
+              <div className="photo-upload-container">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handlePhotoUpload}
+                  id="photo-upload"
+                  className="file-input"
+                  style={{ display: 'none' }}
+                />
+                <label htmlFor="photo-upload" className="upload-btn">
+                  <Upload size={18} />
+                  {formData.profilePic ? 'Change Photo' : 'Upload Photo'}
+                </label>
+                {formData.profilePic && (
+                  <div className="photo-preview">
+                    <img src={formData.profilePic} alt="Preview" />
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
 
           <div className="form-actions">

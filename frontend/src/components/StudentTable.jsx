@@ -29,7 +29,7 @@ const StudentTable = ({ students, onUpdate, onDelete }) => {
                 <div className="table-user-cell">
                   <div className="table-avatar">
                     {student.profilePic ? (
-                      <img src={student.profilePic} alt={student.name} style={{width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover'}} />
+                      <img src={student.profilePic} alt={student.name} style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
                     ) : (
                       student.name.charAt(0)
                     )}
@@ -50,15 +50,15 @@ const StudentTable = ({ students, onUpdate, onDelete }) => {
                 </span>
               </td>
               <td>
-                <button 
-                  className="btn-secondary" 
-                  style={{marginRight: '8px', padding: '4px 8px', fontSize: '0.8rem'}}
+                <button
+                  className="btn-secondary"
+                  style={{ marginRight: '8px', padding: '4px 8px', fontSize: '0.8rem' }}
                   onClick={(e) => { e.stopPropagation(); onUpdate && onUpdate(student.id); }}>
                   Edit
                 </button>
-                <button 
-                  className="btn-danger" 
-                  style={{padding: '4px 8px', fontSize: '0.8rem', backgroundColor: '#fee2e2', color: '#ef4444', border: '1px solid #fca5a5', borderRadius: '4px', cursor: 'pointer'}}
+                <button
+                  className="btn-danger"
+                  style={{ padding: '4px 8px', fontSize: '0.8rem', backgroundColor: '#fee2e2', color: '#ef4444', border: '1px solid #fca5a5', borderRadius: '4px', cursor: 'pointer' }}
                   onClick={(e) => { e.stopPropagation(); onDelete && onDelete(student.id); }}>
                   Delete
                 </button>
